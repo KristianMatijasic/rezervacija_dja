@@ -28,7 +28,7 @@
           </q-td>
         </q-tr>
       </template>
-   
+
 
     </q-page>
 </template>
@@ -67,11 +67,7 @@ onMounted(() => {
 </script>
 
 <style>
-.red-table {
-  background-color: red;
-  color: black;
-  font-weight: bold;
-}
+
 .bg-image {
   background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
 }

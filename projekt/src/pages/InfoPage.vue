@@ -1,6 +1,6 @@
 <template>
     <q-page class="bg-black">
-    
+
       <p class="q-pa-md" style="font-size: 24px; color: white"><b>O APLIKACIJI:</b></p>
       <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Svrha ovog sustava za rezervaciju DJ-a je lakši pronalazak DJ-a za željene potrebe (sviranje u klubovima ili na raznim vrstama zabava...)</b></p>
       <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Na ovoj web stranici moguće je pretražiti prijavljene DJ-eve, pregledati informacije o njima i njihove pjesme, te rezervirati DJ-a za željenu potrebu</b></p>
@@ -17,12 +17,11 @@
       <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Rezervacija DJ-a preko kalendara</b></p>
       <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Mogućnost komentiranja pjesama</b></p>
       <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Tražilica DJ-eva na početnoj stranici</b></p>
-      <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Rezervacije DJ-a na stranici pojedinog DJ-a</b></p>
       <p class="q-pa-md" style="font-size: 20px; color: white"><b>- Mogućnost uređivanja slike...</b></p>
-    
+
     </q-page>
     </template>
-    
+
     <style>
     .bg-image {
       background-image: url(https://images.alphacoders.com/237/237133.jpg);

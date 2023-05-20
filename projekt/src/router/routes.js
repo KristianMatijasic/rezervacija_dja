@@ -5,9 +5,10 @@ const routes = [
     children: [
       { path: "", component: () => import("pages/IndexPage.vue") },
       { path: "unos", component: () => import("pages/UnosDjPage.vue") },
-      { path: "unos_rez", component: () => import("pages/RezervirajPage.vue") },
+      //{ path: "unos_rez", component: () => import("pages/RezervirajPage.vue") },
       { path: "pregled_rez", component: () => import("pages/PregledRezervacijaPage.vue") },
       { path: "info_stranica", component: () => import("pages/InfoPage.vue") },
+      { path: "odjava", component: () => import("pages/OdjavaPage.vue") },
     ],
   },
 
@@ -27,6 +28,14 @@ const routes = [
   },
 
 
+  {
+    path: "/unos_rez",
+    component: () => import("layouts/BlankLayout.vue"),
+    children: [
+      {name: "unos_rez", path: ":id", component: () => import("pages/RezervirajPage.vue"),
+      },
+    ],
+  },
 
   {
     path: "/dodaj_pjesmu",

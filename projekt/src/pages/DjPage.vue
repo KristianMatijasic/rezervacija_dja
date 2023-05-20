@@ -14,7 +14,6 @@
         </q-img>
       </div>
 
-
       <div class="q-pa-md">
         <div class="q-pa-md items-start q-gutter-xs" style="background-color: red; color: white;">
           <div class="" style="font-size: 20px;">Ime:</div>
@@ -28,7 +27,6 @@
           <q-separator color="black" class="bold-separator" />
           <div class="" style="font-size: 20px;">Grad:</div>
           <div class="text-bold" style="font-size: 25px;">{{ post.grad }}</div>
-          <!-- <q-btn round color="black" icon="delete" style="right: -12px" @click="deleteOcjena(post.id_atrakcije)" /> -->
           <q-separator color="black" class="bold-separator" />
           <div class="" style="font-size: 20px;">Broj mobitela:</div>
           <div class="text-bold" style="font-size: 25px;">{{ post.broj }}</div>
@@ -39,14 +37,19 @@
       </div>
     </div>
 
+
+
+
     <div>
       <q-card-section class="q-gutter-lg">
         <q-btn  style="background-color: red; color: white;" class="button" @click="$router.push('/dodaj_pjesmu/'+trenutniID)" label="Dodaj pjesmu" />
+        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/unos_rez/'+trenutniID)" label="Rezerviraj" />
         <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/')" label="Natrag na pregled DJ-eva" />
-         <!-- <q-btn icon="delete" class="absolute"  style="background-color: red; color: white;" @click="deleteById(post.ID_DJ)" /> -->
+      <!-- <q-btn style="background-color: red; color: white; top: 10px; right: 50px; transform: translateY(-50%)" icon="delete" class="absolute"
+           @click="deleteDJ(item.ID_DJ)" /> -->
       </q-card-section>
     </div>
-   
+
 
     <q-separator color="black" class="bold-separator" />
 
@@ -55,7 +58,6 @@
   <p style="font-size: 25px; color: white"><b>Pjesme:</b></p>
 
 </div>
-
 <div class="q-pa-md row items-start q-gutter-md">
   <q-card v-for="item in comments" :key="item" class="my-card" flat bordered>
     <q-item>
@@ -66,7 +68,10 @@
       </q-item-section>
       <q-card-section>
         <b>{{item.naziv_pjesma}}</b>
-      </q-card-section>
+        <div>
+         <q-btn icon="delete" style="background-color: red; color: white; left: 560px;" @click="deletePjesma(item.ID_pjesma)" />
+        </div>
+        </q-card-section>
     </q-item>
     <q-separator />
     <q-card-section horizontal>
@@ -110,17 +115,28 @@ const getPosts = async () => {
   }
 }
 
+// brisanje pjesme
+const deletePjesma = async (id) => {
+  try {
+    const response = await api.delete(`http://localhost:4200/obrisi_pjes/${id}`);
+    console.log(response.data);
 
+  } catch (error) {
+    console.log(error);
+  }
+  getPosts();
+}
 
-const deleteById = async (id) => {
-try {
-  const response = await api.delete(`http://localhost:4200/obrisi_DJ/${id}`);
-  console.log(response.data);
-} catch (error) {
-  console.log(error);
-}
-getPosts();
-}
+// // brisanje DJ
+// const deleteDJ = async (id) => {
+//   try {
+//     const response = await api.delete(`http://localhost:4200/obrisi_DJ/${id}`);
+//     console.log(response.data);
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   getPosts();
+// }
 
 
 onMounted(() => {

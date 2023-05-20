@@ -13,9 +13,9 @@
           <div class="q-gutter-md full-with" style="max-width: 500px">
             <div class="loginText text-bold text-red" style="text-align: center">{{ tab }}</div>
 
-            <q-input v-model="credentials.email" class="input" outlined label="Email" />
+            <q-input v-model="credentials.user" class="input" outlined label="Email" />
             <div> </div>
-            <q-input v-model="credentials.password" class="input" outlined type="password" label="Lozinka" />
+            <q-input v-model="credentials.pas" class="input" outlined type="password" label="Lozinka" />
 
 
             <div class="row justify-between">
@@ -23,6 +23,7 @@
               <q-btn style="background-color: red; color: white" type="submit">{{ tab }}</q-btn>
             </div>
           </div>
+
 
         </form>
       </q-card-section>
@@ -32,8 +33,6 @@
 
 <script setup>
 import { ref, reactive } from "vue"
-
-
 
 const register = ref(false)
 const tab = ref('')
