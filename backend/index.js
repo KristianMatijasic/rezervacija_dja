@@ -133,28 +133,10 @@ app.post('/DJ', function (request, response) {
   });
 
 
-//pregled rez
-app.get('/pregled_rez/:id', function (request, response) {
-  let ID_rez = request.params.id;
-  if (!ID_rez) {
-      return response.status(400).send({
-          error: true, 
-          
-          message: 'Unesite id_rezervacije'
-      });
-  }
-  dbConn.query('SELECT * FROM Rezervacija where ID_rez=?', ID_rez, function
-      (error, results, fields) {
-      if (error) throw error;
-      return response.send({
-         data: results[0]
-              
-      });
-  });
-});
+
 app.get('/pregled_rez', (req,res)=>{
-  dbConn.query("select * from Rezervacija", (err,result)=>{
-      if(err){
+  dbConn.query("select * from Rezervacija", (error, result, fields)=>{
+    if(error){
           res.send('error');
       }else{
           res.send(result);
@@ -162,28 +144,18 @@ app.get('/pregled_rez', (req,res)=>{
   });
 });
 
-// //brisanje DJ-a
-// app.delete('/obrisi_DJ/:id', function (request, response) {
-//   let ID_DJ = request.params.id;
+app.get('/pregled_rez/:id', function (request, response) {
+  let ID_DJ = request.params.id;
+  dbConn.query('SELECT * FROM Rezervacija where VK_ID_DJJ=?', ID_DJ, function (error, results, fields) {
+      if (error) throw error;
+      return response.send({
+        error: false,
+        data: results,
+        message: "lista rezervacija.",          
+      });
+  });
+});
 
-//   console.log(`Primljen zahtjev za brisanje DJ-a s ID-om: ${ID_DJ}`); // Dodan ispravan ID u ispisu
-
-//   if (!ID_DJ) {
-//     return response.status(400).send({ error: true, message: 'Nedostaje ID DJ-a' });
-//   }
-
-//   const deleteQuery = "DELETE FROM DJ WHERE ID_DJ = ?";
-//   dbConn.query(deleteQuery, [ID_DJ], function (error, results) {
-//     if (error) {
-//       console.log(`Greška prilikom izvršavanja upita za brisanje: ${error}`);
-//       throw error;
-//     }
-
-//     console.log(`Rezultat brisanja: ${JSON.stringify(results)}`);
-
-//     return response.send({ error: false, data: results, message: 'DJ je obrisan.' });
-//   });
-// });
 
 
 // uzimanje podataka o pjesmama
@@ -246,26 +218,8 @@ app.delete('/obrisi_pjes/:id', function (request, response) {
   });
 });
 
-// Registracija/login korisnika 
-app.post('/korisnik/register',  (req, res) => {
-  const { username, password } = req.body;
-  try {
-    dbConn.query('SELECT * FROM Korisnik WHERE username = ?', [username], (error, result) => {
-
-    if (result.length > 0) {
-      res.status(409).json({ message: 'Korisničko ime je zauzeto' });
-    } else {
-      dbConn.query('INSERT INTO Korisnik (username, password) VALUES (?, ?)', [username, password]);
-      res.json({ message: 'Uspješna registracija' });
-    }
-  });
-  } catch (err) {
-    console.error('Greška prilikom registracija:', err);
-    res.status(500).json({ message: 'Greška prilikom registracija' });
-  }
-});
-
-app.post('/korisnik/register',  (req, res) => {
+// Registracija korisnika 
+app.post('/registracija',  (req, res) => {
   const { username, password } = req.body;
   try {
     dbConn.query('SELECT * FROM Korisnik WHERE username = ?', [username], (error, result) => {

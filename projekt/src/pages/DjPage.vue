@@ -7,12 +7,12 @@
         <q-img :src=post.Slika width="500px" height="600px" position="absolute" top="50%" left="50%"
           transform="translate(-50%, -50%)">
 
-
           <div class="absolute-bottom text-subtitle1 text-center">
             <div style="text-transform:uppercase; font-size:50px;">{{ post.DJime }}</div>
           </div>
         </q-img>
       </div>
+
 
       <div class="q-pa-md">
         <div class="q-pa-md items-start q-gutter-xs" style="background-color: red; color: white;">
@@ -35,29 +35,28 @@
           <div class="text-bold" style="font-size: 25px;">{{ post.email }}</div>
         </div>
       </div>
+      <div>
     </div>
-
-
+    </div>
 
 
     <div>
       <q-card-section class="q-gutter-lg">
-        <q-btn  style="background-color: red; color: white;" class="button" @click="$router.push('/dodaj_pjesmu/'+trenutniID)" label="Dodaj pjesmu" />
+        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/dodaj_pjesmu/'+trenutniID)" label="Dodaj pjesmu" />
+        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/pregled_rez/'+trenutniID)" label="Pregled rezervacija" />
         <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/unos_rez/'+trenutniID)" label="Rezerviraj" />
-        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/')" label="Natrag na pregled DJ-eva" />
-      <!-- <q-btn style="background-color: red; color: white; top: 10px; right: 50px; transform: translateY(-50%)" icon="delete" class="absolute"
-           @click="deleteDJ(item.ID_DJ)" /> -->
+        <q-btn style="background-color: red; color: white;" class="button" @click="$router.push('/')" label="Natrag na početnu" />
       </q-card-section>
     </div>
 
 
     <q-separator color="black" class="bold-separator" />
 
-
 <div class="q-pa-md row items-start q-gutter-xs">
-  <p style="font-size: 25px; color: white"><b>Pjesme:</b></p>
+  <p style="font-size: 25px; color: white"><b>PJESME:</b></p>
 
 </div>
+
 <div class="q-pa-md row items-start q-gutter-md">
   <q-card v-for="item in comments" :key="item" class="my-card" flat bordered>
     <q-item>
@@ -98,8 +97,8 @@ const posts = ref([])
 const comments = ref([])
 const route = useRoute()
 const router = useRouter()
-
 const trenutniID = route.params.id
+
 const getPosts = async () => {
   try {
     const response = await api.get(`/DJ/${trenutniID}`)
@@ -127,22 +126,14 @@ const deletePjesma = async (id) => {
   getPosts();
 }
 
-// // brisanje DJ
-// const deleteDJ = async (id) => {
-//   try {
-//     const response = await api.delete(`http://localhost:4200/obrisi_DJ/${id}`);
-//     console.log(response.data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   getPosts();
-// }
-
 
 onMounted(() => {
   getPosts()
 })
 </script>
+
+
+
 
 
 <style scoped></style>
@@ -151,7 +142,8 @@ onMounted(() => {
 <style lang="sass" scoped>
 .my-card
   width: 100%
-  max-width: 800px
+  max-width: 735px
+  class: flex-center
 </style>
 
 
@@ -163,8 +155,10 @@ onMounted(() => {
 .bold-separator {
   border-top: 2px solid black;
 }
+
 .bg-image {
   background-image: url(https://images.alphacoders.com/237/237133.jpg);
+
 }
 
 </style>

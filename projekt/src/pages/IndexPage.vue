@@ -1,8 +1,7 @@
 <template>
-  <q-page class="bg-black">
+  <q-page class="bg-image">
 
-    <!-- <q-input style="background-color: white" width="200px" outlined v-model="searchQuery" placeholder="Pretraži DJ-a..."
-      dense /> -->
+    
 
     <div class="q-pa-md row items-start q-gutter-md">
 
@@ -52,16 +51,6 @@ const getPosts = async () => {
 }
 
 
-// const deleteById = async (id) => {
-//   try {
-//     const response = await api.delete(`http://localhost:4200/obrisi_DJ/${id}`);
-//     console.log(response.data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   getPosts();
-// }
-
 
 onMounted(() => {
   getPosts()
@@ -77,7 +66,7 @@ const goToDJDetalji = (id) => {
 }
 
 
-//const searchQuery = ref('')
+
 
 </script>
 
@@ -93,7 +82,7 @@ const goToDJDetalji = (id) => {
   max-width: 300px;
 }
 .bg-image {
-  background-image: url(https://c1.wallpaperflare.com/preview/108/956/844/people-man-music-party.jpg);
+  background-image: url(https://images.alphacoders.com/237/237133.jpg);
 }
 
 
